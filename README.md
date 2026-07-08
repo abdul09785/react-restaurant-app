@@ -38,7 +38,7 @@ Restaurant-App/
 Clone the repository:
 
 ```bash
-git clone https://github.com/abdul09785/your-repository-name.git
+git clone https://github.com/abdul09785/Restaurant-app-react.git
 ```
 
 Go to the project folder:

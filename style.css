@@ -54,22 +54,24 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  padding: 30px;
+  gap: 20px;
 }
 
 .res-card {
-  width: 270px;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.8);
-  background-color: white;
-  transition: 0.3s;
+  width: 250px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
+  background-color: rgb(184, 246, 209);
+  transition: 0.2s;
   cursor: pointer;
   border-radius: 15px;
-  padding: 15px;
+  padding: 12px;
   margin: 15px;
 }
 .res-card:hover {
-  transform: translateY(-8px) scale(1.03);
+  /* transform: scale(1.01); */
 
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.8);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.8);
 }
 
 .res-logo {
@@ -80,11 +82,13 @@
 }
 
 .footer {
+  height: 50px;
+
   text-align: center;
-  padding: 60px;
+  padding: 30px;
   background-color: #09973d;
   color: white;
   /* border-radius: 7px; */
-  margin-top: 20px;
-  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+  margin-top: 50px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
