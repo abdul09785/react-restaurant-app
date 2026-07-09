@@ -1,13 +1,10 @@
-
+import { LogoURl } from "../utils/constant";
 
 const Header = () => {
   return (
     <div className="header">
       <div className="logo-container">
-        <img
-          className="header-logo"
-          src="https://ik.imagekit.io/pfq9vdvnxo/images_q=tbn:ANd9GcTxAYbHejDh1MP8fJy9AN5AhuMWmvlQrnO7odm8Ea2KWFT0ARXHFuwprUo&s=10"
-        />
+        <img className="header-logo" src={LogoURl} />
       </div>
 
       <div className="search-bar">
