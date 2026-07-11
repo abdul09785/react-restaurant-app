@@ -1,32 +1,55 @@
+import { baseURl } from "../utils/constant";
 
-const RestaurantCard = ({ resDetail, moreDetails }) => {
+const RestaurantCard = ({ resDetail }) => {
+  if (!resDetail) return null;
+
   const {
     id,
-    resName,
+    name,
+    Name,
+    cuisines,
     cuisine,
     avgRating,
-    delieveryTime,
+    sla,
     costForTwo,
-    imgId,
+    cloudinaryImageId,
+    areaName,
     location,
+    resName,
+    delieveryTime,
+    imgId,
   } = resDetail;
 
+  const restaurantName = name || Name || resName || "Restaurant";
+  const restaurantCuisines = Array.isArray(cuisines)
+    ? cuisines
+    : Array.isArray(cuisine)
+      ? cuisine
+      : ["Various cuisines"];
+  const restaurantRating = avgRating || "N/A";
+  const deliveryTime = sla?.deliveryTime || delieveryTime || "N/A";
+  const restaurantCost = costForTwo || "Price not available";
+  const restaurantImage = cloudinaryImageId || imgId;
+  const restaurantArea = areaName || location || "Location unavailable";
+
   return (
-    <div className="res-card">
+    <div className="res-card" key={id}>
       <div className="res-img-container">
         <img
           className="res-logo"
           alt="res-logo"
-          src={`https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/${imgId}`}
+          src={restaurantImage ? `${baseURl}${restaurantImage}` : ""}
         />
       </div>
-      <h3 className="res-title">{resName}</h3>
-      <h4>{cuisine.join(", ")}</h4>
-      <h4>⭐️ {avgRating} Stars</h4>
+      <h3 className="res-title">{restaurantName}</h3>
+      <h4>{restaurantCuisines.join(", ")}</h4>
+      <h4>⭐️ {restaurantRating} Stars</h4>
       <h4>
-        {delieveryTime} mins | {costForTwo}
+        {deliveryTime} mins | {restaurantCost}
       </h4>
+      <h4>📍{restaurantArea}</h4>
     </div>
   );
 };
+
 export default RestaurantCard;
