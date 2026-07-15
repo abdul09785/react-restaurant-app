@@ -8,6 +8,8 @@ import About from "./src/components/About";
 import Body from "./src/components/Body";
 import Cart from "./src/components/Cart";
 import Contact from "./src/components/Contact";
+import RestaurantPage from "./src/components/RestaurantPage";
+
 
 const appRouter = createBrowserRouter([
   {
@@ -17,6 +19,10 @@ const appRouter = createBrowserRouter([
       {
         path: "/",
         element: <Body />,
+      },
+      {
+        path:"/restaurant/:resId",
+        element:<RestaurantPage />,
       },
 
       {

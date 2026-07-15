@@ -93,11 +93,11 @@ const Contact = () => {
             <div className="contact-form__row">
               <label>
                 First name
-                <input type="text" placeholder="Aarav" />
+                <input type="text" placeholder="peter" />
               </label>
               <label>
                 Last name
-                <input type="text" placeholder="Sharma" />
+                <input type="text" placeholder="parker" />
               </label>
             </div>
             <div className="contact-form__row">
