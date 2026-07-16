@@ -1,46 +1,66 @@
 import React from "react";
-
-import { useEffect, useState } from "react";
-
 import { useParams } from "react-router-dom";
-import { baseURl, menuAPI, swiggyURL } from "../utils/constant";
+import { MenuAPI } from "../utils/constant";
+import { useEffect, useState } from "react";
+import RestaurantPageInfo from "./RestaurantPageInfo";
+import RestaurantCategory from "./RestaurantCategory";
+import { Shimmer } from "./Shimmer";
+import useMenuData from "../utils/useMenuData";
+
 
 const RestaurantPage = () => {
   const { resId } = useParams();
-  console.log(resId);
 
-  const [menu, setMenu] = useState(null);
+  const menu = useMenuData(resId);
 
-  useEffect(() => {
-    getRestaurantMenu();
-  }, [resId]);
+  if (menu === null) {
+    return <Shimmer />;
+  }
 
-  const getRestaurantMenu = async () => {
-    const rawData = await fetch(menuAPI + resId);
-    const json = await rawData.json();
-    console.log(json);
-    setMenu(json);
-  };
+  const categories =
+    menu?.data?.cards[5]?.groupedCard?.cardGroupMap?.REGULAR?.cards.filter(
+      (category) => {
+        if (
+          category?.card?.card?.["@type"] ===
+          "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
+        ) {
+          return true;
+        } else {
+          return false;
+        }
+      },
+    );
 
-    if (menu === null){
-      return <div>
-          loading......
-      </div>
-    }
-     const {
-      name,
-      avgRatingString,
-      totalRatingsString,
-      cuisines,
-      cloudinaryImageId,
-    } = menu?.data?.cards[2]?.card?.card?.info;
+  const {
+    name,
+    avgRatingString,
+    totalRatingsString,
+    cuisines,
+    cloudinaryImageId,
+  } = menu?.data?.cards[2]?.card?.card?.info;
 
   return (
-    <div>
-      <h1 className="menu-title">{name}</h1>
-      <img className="menu-img" src={baseURl + cloudinaryImageId}/>
+    <div
+      style={{
+        paddingLeft: "340px",
+        paddingTop: "100px",
+        paddingBottom: "50px",
+        paddingRight: "340px",
+      }}
+    >
+      <RestaurantPageInfo menu={menu} />
+
+      {categories.map((category) => {
+        console.log(category);
+        return (
+          <RestaurantCategory
+            key={category.card.card.categoryId}
+            categoryInfo={category.card.card}
+          />
+        );
+      })}
     </div>
-  )
+  );
 };
 
 export default RestaurantPage;
