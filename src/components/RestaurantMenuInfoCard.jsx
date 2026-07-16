@@ -2,7 +2,7 @@
 import React from "react";
 import { baseURl } from "../utils/constant";
 
-const RestaurantPageInfo = ({ menu }) => {
+const RestaurantPageInfoCard = ({ menu }) => {
   const {
     name,
     avgRatingString,
@@ -13,14 +13,12 @@ const RestaurantPageInfo = ({ menu }) => {
 
   return (
     <div>
-      <div className="res-main-container">
+      <div className="res-main-wrapper">
         <h1 className="menu-title">{name}</h1>
 
         <img
           className="menu-img"
-          src={baseURl + cloudinaryImageId}
-          alt={name}
-        />
+          src={baseURl + cloudinaryImageId}/>
 
         <h3>
           🌟{avgRatingString} ({totalRatingsString})
@@ -32,4 +30,4 @@ const RestaurantPageInfo = ({ menu }) => {
   );
 };
 
-export default RestaurantPageInfo;
+export default RestaurantPageInfoCard;

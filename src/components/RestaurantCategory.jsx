@@ -1,7 +1,7 @@
 import React from "react";
-import RestaurantPageInfo from "./RestaurantPageInfo";
+import RestaurantMenuInfoCard from "./RestaurantMenuInfoCard";
 import { useState } from "react";
-
+import MenuItems from "./MenuItems";
 const RestaurantCategory = ({ categoryInfo }) => {
 
   const { title, itemCards } = categoryInfo;
@@ -32,9 +32,9 @@ const RestaurantCategory = ({ categoryInfo }) => {
             );
           })}
         </div>
-      ) : (
-        <div></div>
-      )}
+      ) : 
+        
+      }
     </div>
   );
 };
