@@ -9,7 +9,9 @@ import Body from "./src/components/Body";
 import Cart from "./src/components/Cart";
 import Contact from "./src/components/Contact";
 import RestaurantMenu from "./src/components/RestaurantMenu";
-
+import Signup from "./src/components/Singup";
+import Signin from "./src/components/Singin";
+import { lazy, Suspense } from "react";
 
 const appRouter = createBrowserRouter([
   {
@@ -21,19 +23,30 @@ const appRouter = createBrowserRouter([
         element: <Body />,
       },
       {
-        path:"/restaurant/:resId",
-        element:<RestaurantMenu />,
+        path: "/restaurant/:resId",
+        element: <RestaurantMenu />,
       },
 
       {
         path: "/contact",
         element: <Contact />,
       },
+      {
+        path: "/singin",
+        element: <Signin />,
+      },
 
       {
         path: "/about",
         element: <About />,
       },
+      {
+        path: "/singup",
+        element: <Signup />,
+      },
+      // {
+      //   path: ""
+      // },
 
       {
         path: "/cart",

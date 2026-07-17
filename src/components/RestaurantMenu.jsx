@@ -7,10 +7,14 @@ import RestaurantCategory from "./RestaurantCategory";
 import { Shimmer } from "./Shimmer";
 import useMenuData from "../utils/useMenuData";
 import RestaurantPageInfoCard from "./RestaurantMenuInfoCard";
+import MenuItems from "./MenuItems";
 
 
 const RestaurantMenu = () => {
   const { resId } = useParams();
+
+  const [showIndex, setShowIndex] = useState();
+
 
   const menu = useMenuData(resId);
 
@@ -32,22 +36,27 @@ const RestaurantMenu = () => {
       },
     );
 
-  const {
+      const {
     name,
     avgRatingString,
     totalRatingsString,
     cuisines,
     cloudinaryImageId,
   } = menu?.data?.cards[2]?.card?.card?.info;
+  
 
   return (
     <div className="Restaurant-Page-menu" >
       <RestaurantPageInfoCard menu={menu} />
 
-      {categories.map((category) => {
+      {categories.map((category, index) => {
         console.log(category);
         return (
           <RestaurantCategory
+         setIndex={()=>{
+          setShowIndex(index);
+         }}
+         order={index === showIndex ? true : false}
             key={category.card.card.categoryId}
             categoryInfo={category.card.card}
           />
