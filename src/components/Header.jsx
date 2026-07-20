@@ -1,8 +1,32 @@
 import { Link } from "react-router-dom";
 import { LogoURl } from "../utils/constant";
 import useOnlineStatus from "../utils/useOnlineStatus";
-
+import UserContext from "../utils/UserContext";
+import { useContext } from "react";
+import HotelListContext from "../utils/HotelListContext";
+import { useState } from "react";
 const Header = () => {
+  const { name } = useContext(UserContext);
+  // console.log(name);
+
+  const { hotelList, setHotelList, allItems } = useContext(HotelListContext);
+
+  const [filterToggle, setFilterToggle] = useState(false);
+  const [searchText, setSearchText] = useState("");
+
+  function setFilter() {
+    if (!filterToggle) {
+      const filteredArray = allItems.filter(
+        (restaurant) => restaurant.info.avgRating > 4.3,
+      );
+
+      setHotelList(filteredArray);
+      setFilterToggle(!filterToggle);
+    } else {
+      setHotelList(allItems);
+      setFilterToggle(!filterToggle);
+    }
+  }
   const isOnline = useOnlineStatus();
 
   return (
@@ -14,15 +38,32 @@ const Header = () => {
       </Link>
 
       <div className="search-bar">
-        <input placeholder="Search For Restaurants and Food" />
+        <input
+          value={searchText}
+          placeholder="Search restaurant & food...."
+          onChange={(e) => {
+            const value = e.target.value;
+            setSearchText(value);
+
+            const filteredList = allItems.filter((restaurant) =>
+              restaurant.info.name.toLowerCase().includes(value.toLowerCase()),
+            );
+            setHotelList(filteredList);
+          }}
+        />
       </div>
 
       <div className="nav-items">
         <ul>
+          <li>
+            <button className="buttn-filter" onClick={setFilter}>
+              {filterToggle ? "all Restaurant" : "Top Restaurant"}{" "}
+            </button>
+          </li>
           {isOnline ? (
-            <li> 🟢 Online </li>
+            <li> 🟢 active </li>
           ) : (
-            <li className="red"> 🛑 Offline </li>
+            <li className="red"> 🛑 deactive </li>
           )}
 
           <li>
@@ -43,6 +84,7 @@ const Header = () => {
             {" "}
             <Link to={"/cart"}>Cart</Link>
           </li>
+          <li>{name}</li>
         </ul>
       </div>
     </div>

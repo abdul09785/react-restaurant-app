@@ -50,11 +50,11 @@ const RestaurantMenu = () => {
       <RestaurantPageInfoCard menu={menu} />
 
       {categories.map((category, index) => {
-        console.log(category);
+        // console.log(category);
         return (
           <RestaurantCategory
          setIndex={()=>{
-          setShowIndex(index);
+          setShowIndex(index === showIndex ? null : index);
          }}
          order={index === showIndex ? true : false}
             key={category.card.card.categoryId}

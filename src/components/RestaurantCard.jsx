@@ -52,4 +52,17 @@ const RestaurantCard = ({ resDetail }) => {
   );
 };
 
+export const withDiscountLable = (RestaurantCard) => {
+  function newComponent({ resDetail }) {
+    return (
+      <div>
+        <label>Discount</label>
+        <RestaurantCard resDetail={resDetail} />
+      </div>
+    );
+  }
+
+  return newComponent;
+};
+
 export default RestaurantCard;
