@@ -9,15 +9,11 @@ import HotelListContext from "../utils/HotelListContext";
 import useOnlineStatus from "../utils/useOnlineStatus";
 import { withDiscountLable } from "./RestaurantCard";
 const Body = () => {
- const {
-  hotelList,
-  setHotelList,
-  allItems,
-  setAllItems,
-} = useContext(HotelListContext);
-  const DiscountResCard =  withDiscountLable(RestaurantCard)
+  const { hotelList, setHotelList, allItems, setAllItems } =
+    useContext(HotelListContext);
+  const DiscountResCard = withDiscountLable(RestaurantCard);
 
-  console.log(hotelList);
+  // console.log(hotelList);
   const isOnline = useOnlineStatus();
 
   useEffect(() => {
@@ -39,7 +35,7 @@ const Body = () => {
       data.data.cards[1]?.card?.card?.gridElements?.infoWithStyle?.restaurants,
     );
 
-    console.log(hotelList);
+    // console.log(hotelList);
   };
 
   if (!isOnline) {
@@ -60,14 +56,14 @@ const Body = () => {
     <div className="body">
       <div className="res-container">
         {hotelList.map((resObj) => (
-  <Link to={`/restaurant/${resObj.info.id}`} key={resObj.info.id}>
-    {resObj.info.aggregatedDiscountInfoV3 ? (
-      <DiscountResCard resDetail={resObj.info} />
-    ) : (
-      <RestaurantCard resDetail={resObj.info} />
-    )}
-  </Link>
-))}
+          <Link to={`/restaurant/${resObj.info.id}`} key={resObj.info.id}>
+            {resObj.info.aggregatedDiscountInfoV3 ? (
+              <DiscountResCard resDetail={resObj.info} />
+            ) : (
+              <RestaurantCard resDetail={resObj.info} />
+            )}
+          </Link>
+        ))}
       </div>
     </div>
   );

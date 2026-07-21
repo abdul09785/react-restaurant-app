@@ -2079,3 +2079,27 @@ footer-intro {
   border: none;
   color: white;
 }
+/* .discount-wrapper-container {
+  background-color: #09973d;
+  height: auto;
+  border-radius: 10px;
+  z-index: 1000px;
+  position: relative;
+
+} */
+
+.discount-container {
+  background-color: rgb(36, 241, 125);
+  width: 180px;
+  border-radius: 8px;
+  color: white;
+  position: relative;
+  top: 200px;
+  z-index: 2;
+  left: 15px;
+  /* transition: transform 0.4s ease; */
+}
+
+/* .discount-container:hover {
+  transform: scaleX(0.23);
+} */

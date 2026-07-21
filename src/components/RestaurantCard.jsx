@@ -6,9 +6,7 @@ const RestaurantCard = ({ resDetail }) => {
   const {
     id,
     name,
-    Name,
     cuisines,
-    cuisine,
     avgRating,
     sla,
     costForTwo,
@@ -20,6 +18,7 @@ const RestaurantCard = ({ resDetail }) => {
     imgId,
   } = resDetail;
 
+  console.log(resDetail);
   const restaurantName = name || Name || resName || "Restaurant";
   const restaurantCuisines = Array.isArray(cuisines)
     ? cuisines
@@ -54,9 +53,15 @@ const RestaurantCard = ({ resDetail }) => {
 
 export const withDiscountLable = (RestaurantCard) => {
   function newComponent({ resDetail }) {
+    const { header, subHeader } = resDetail?.aggregatedDiscountInfoV3 || {};
     return (
-      <div>
-        <label>Discount</label>
+      <div className="discount-wrapper">
+        <div className="discount-container"><label className="Discount">Discount</label>
+        <span className="discount-header">{header}</span>
+        <span className="discount-subHeader">{subHeader}</span>
+</div>
+     
+
         <RestaurantCard resDetail={resDetail} />
       </div>
     );
